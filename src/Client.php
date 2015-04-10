@@ -105,6 +105,11 @@ class Client
         return $this->fetchXml($url)->then(array($this->parser, 'parseLogEntries'));
     }
 
+    public function fetchPathRevisions($path)
+    {
+        return $this->fetchXml($path)->then(array($this->parser, 'parseBranches'));
+    }
+
     public function fetchRevisionPrevious($path, $revision)
     {
         return $this->fetchAllPreviousRevisions($path)->then(function ($revisions) use ($revision) {

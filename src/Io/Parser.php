@@ -151,6 +151,28 @@ class Parser
         return $a[0];
     }
 
+    public function parseBranches(SimpleXMLElement $xml)
+    {
+        $branches = array();
+
+        foreach ($xml->xpath('//select[@name="pathrev"]/optgroup[@label="Branches"]/option') as $option) {
+            $branches []= (string)$option;
+        }
+
+        return $branches;
+    }
+
+    public function parseTags(SimpleXMLElement $xml)
+    {
+        $branches = array();
+
+        foreach ($xml->xpath('//select[@name="pathrev"]/optgroup[@label="Non-branch tags"]/option') as $option) {
+            $branches []= (string)$option;
+        }
+
+        return $branches;
+    }
+
     private function linkParameters($href)
     {
         $args = array();
